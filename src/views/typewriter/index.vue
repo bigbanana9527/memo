@@ -1,7 +1,13 @@
 <template>
     <div class="content">
         <div class="nes-container is-dark with-title tps" v-show="Type">
-            <span class="element"></span>
+            <vue-typed-js :strings="typingTexts" :typeSpeed="150" @onComplete="doSmth()">
+                <div class="typing"></div>
+            </vue-typed-js>
+
+        </div>
+        <div class="nes-container is-rounded is-dark" v-show="!Type">
+            <p>这里有个问卷测试,点击下方按钮即可填写</p>
         </div>
         <!-- Dark and Rounded dialog -->
         <section v-show="!Type">
@@ -39,15 +45,11 @@
                 </form>
             </dialog>
         </section>
-        <audio src="@/assets/audio/七里香-周杰伦.flac" loop='true' autoplay="autoplay" ref="MusicPlay" hidden></audio>
+        <!-- <audio src="@/assets/audio/七里香-周杰伦.flac" loop='true' autoplay="autoplay" ref="MusicPlay" hidden></audio> -->
     </div>
 </template>
   
 <script>
-//像素框架样式
-import "nes.css/css/nes.min.css";
-//打字机js库
-import Typed from 'typed.js';
 export default {
     data() {
         return {
@@ -55,34 +57,29 @@ export default {
                 name: '',
                 friend: '',
             },
-            Type: false
+            Type: true,
+            typingTexts: ['希望你能记住我，记住我曾这样存在过。^300  ――村上春树 《挪威的森林》']
         }
     },
     created() {
     },
     methods: {
-        //
         showType() {
             this.Type = true
-            console.log('this.Type', this.Type)
-            var typed = new Typed('.element', {
-                strings: [`你的名字叫${this.userinfo.name} ^1000`,
-                `你最好的朋友的是${this.userinfo.friend} ^1000`,
-                    "谢谢你抽空参加测试 \n ^1000",
-                    "对于友情，我只相信一句话，日久见人心，留到最后的才是好的。",
-                    "哪有人喜欢孤独，不过是不喜欢失望罢了",
-                    "活着，就意味着必须要做点什么，请好好努力。",
-                    "平庸这东西犹如白衬衣上的污痕，一旦染上便永远洗不掉，无可挽回。",
-                    "不管全世界的人怎么说，我都认为自己的感受才是正确的。无论别人怎么看，我绝不打乱自己的节奏。——《当我跑步时我谈些什么》",
-                    "你要做一个不动声色的大人了，不准情绪化，不准偷偷想念，不准回头看。去过自己另外的生活，你要听话，不是所有的鱼都会生活在同一片海里。——《舞舞舞》",], //输入内容, 支持html标签
-                typeSpeed: 200, //打字速度
-
-            });
         },
+        doSmth() {
+            setTimeout(() => {
+                this.$router.back()
+            }, 3000)
+
+        }
     }
 }
 </script>
-<style scoped lang="scss">
+<style lang="scss" scoped>
+//局部引入css文件
+@import 'nes.css/css/nes.min.css';
+
 .content {
     position: absolute;
     right: 0;
@@ -92,6 +89,7 @@ export default {
     background-color: black;
     overflow: hidden;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
