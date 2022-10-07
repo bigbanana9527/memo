@@ -16,10 +16,11 @@ const routes = [
     component: () => import('../views/typewriter')
   },
   {
-    path: '/bootstrap',
-    name: 'bootstrap',
-    component: () => import('../views/bootstrap')
+    path: '/facetracking',
+    name: 'facetracking',
+    component: () => import('../views/facetracking')
   },
+
 ]
 
 const router = new VueRouter({

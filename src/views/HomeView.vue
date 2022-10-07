@@ -3,7 +3,7 @@
     <nav>
       <router-link to="/">Home</router-link> |
       <router-link to="/typewriter">打字机</router-link>|
-      <router-link to="/bootstrap">bootstrap框架</router-link>
+      <router-link to="/facetracking">人脸追踪</router-link>
     </nav>
 
   </div>
@@ -15,9 +15,6 @@
 
 export default {
   name: 'HomeView',
-  components: {
-
-  }
 }
 </script>
 <style lang="scss" scoped>

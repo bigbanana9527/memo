@@ -9,6 +9,7 @@
 </template>
   
 <script>
+//引入在main.js
 export default {
     data() {
         return {
